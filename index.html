@@ -16,17 +16,34 @@
       background: black;
       position: fixed;
       left: 0;
-      bottom: 0;
+      bottom: 10px;
     }
     #vector-indicator {
       height: 2px;
       background: black;
     }
+    .meter {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      overflow: visible;
+      min-width: 2px;
+      transition: width 0.2s, transform 0.2s;
+    }
+    .meter::after {
+      content: "";
+      display: block;
+      height: 2px;
+      width: 2px;
+      border-radius: 1px;
+      transform: scale(4);
+      background-color: green;
+    }
   </style>
   <title>sweatyboi</title>
   <body>
-    <div id="activity-meter"></div>
-    <div id="vector-indicator"></div>
+    <div id="activity-meter" class="meter"></div>
+    <div id="vector-indicator" class="meter"></div>
     <script type="text/javascript" src="dist/main.js"></script>
   </body>
 </html>
