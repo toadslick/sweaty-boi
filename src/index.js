@@ -1,3 +1,3 @@
-const fn = () => {};
+import { distance, } from './utils';
 
-export default fn;
+console.log(distance(3, 5));
