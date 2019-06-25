@@ -14,12 +14,12 @@ let cursorAngle = 0;
 const activityDiv = document.getElementById("activity-meter");
 const vectorDiv = document.getElementById("vector-indicator");
 
-document.addEventListener("mousemove", ({ screenX, screenY }) => {
-  frameDistance += distance(prevCursorX, prevCursorY, screenX, screenY);
-  const ang = angle(prevCursorX, prevCursorY, screenX, screenY);
+document.addEventListener("mousemove", ({ clientX, clientY }) => {
+  frameDistance += distance(prevCursorX, prevCursorY, clientX, clientY);
+  const ang = angle(prevCursorX, prevCursorY, clientX, clientY);
   ang && (cursorAngle = ang);
-  prevCursorX = screenX;
-  prevCursorY = screenY;
+  prevCursorX = clientX;
+  prevCursorY = clientY;
 });
 
 window.setInterval(() => {
@@ -27,10 +27,11 @@ window.setInterval(() => {
     (activityRate + frameDistance) * ACTIVITY_DECAY,
     MAX_ACTIVITY_RATE
   );
+
   activityDiv.style.width = `${(activityRate / MAX_ACTIVITY_RATE) * 100}%`;
   vectorDiv.style.width = `${frameDistance}px`;
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
   frameDistance = 0;
-}, CURSOR_INTERVAL);
 
-new Particle();
+  new Particle(prevCursorX, prevCursorY);
+}, CURSOR_INTERVAL);

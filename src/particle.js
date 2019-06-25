@@ -3,19 +3,28 @@ const TAG_NAME = "div";
 
 const privateStyles = {
   position: "fixed",
-  left: `${-1 * SIZE}px`,
-  top: `${-1 * SIZE}px`,
+  // left: `${-1 * SIZE}px`,
+  // top: `${-1 * SIZE}px`,
   height: `${SIZE}px`,
-  width: `${SIZE}px`
+  width: `${SIZE}px`,
+  zIndex: 9999,
+  userSelect: "none"
 };
 
 export default class Particle {
   customStyles = {
-    backgroundColor: "cyan",
-    borderRadius: "50px"
+    backgroundColor: "pink",
+    borderRadius: `${SIZE / 2}px`
   };
 
-  constructor(container, originX, originY, angle, velocity, scale) {
+  constructor(
+    originX = 0,
+    originY = 0,
+    angle = 0,
+    velocity = 0,
+    scale = 1,
+    container = document.body
+  ) {
     this.x = originX;
     this.y = originY;
     this.angle = angle;
@@ -23,11 +32,19 @@ export default class Particle {
     this.scale = scale;
     this.element = document.createElement(TAG_NAME);
 
-    const styles = { ...customStyles, ...privateStyles };
-    for (key in styles) {
-      console.log(key, styles[key]);
+    const styles = { ...this.customStyles, ...privateStyles };
+    for (const key in styles) {
+      this.element.style[key] = styles[key];
     }
 
+    container.appendChild(this.element);
+
     this.update();
+  }
+
+  update() {
+    this.element.style.transform = `scale(${this.scale})`;
+    this.element.style.left = `${this.x - SIZE / 2}px`;
+    this.element.style.top = `${this.y - SIZE / 2}px`;
   }
 }

@@ -7,6 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist")
   },
   devtool: "source-map",
+  watch: true,
   module: {
     rules: [
       {
@@ -15,7 +16,8 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "stage-2"]
+            presets: ["@babel/preset-env"],
+            plugins: ["transform-class-properties"],
           }
         }
       }
