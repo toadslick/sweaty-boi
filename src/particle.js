@@ -17,27 +17,23 @@ export default class Particle {
     borderRadius: `${SIZE / 2}px`
   };
 
-  constructor(
-    originX = 0,
-    originY = 0,
-    angle = 0,
-    velocity = 0,
-    scale = 1,
-    container = document.body
-  ) {
+  scaleDecay = 0.98;
+
+  constructor(originX = 0, originY = 0, angle = 0, velocity = 0, scale = 1) {
     this.x = originX;
     this.y = originY;
     this.angle = angle;
     this.velocity = velocity;
     this.scale = scale;
     this.element = document.createElement(TAG_NAME);
+    this.removed = false;
 
     const styles = { ...this.customStyles, ...privateStyles };
     for (const key in styles) {
       this.element.style[key] = styles[key];
     }
 
-    container.appendChild(this.element);
+    document.body.appendChild(this.element);
 
     this.update();
   }
@@ -46,5 +42,23 @@ export default class Particle {
     this.element.style.transform = `scale(${this.scale})`;
     this.element.style.left = `${this.x - SIZE / 2}px`;
     this.element.style.top = `${this.y - SIZE / 2}px`;
+  }
+
+  decay() {
+    this.scale = this.scale * this.scaleDecay;
+  }
+
+  shouldDismount() {
+    return this.scale < 0.1;
+  }
+
+  step() {
+    if (this.shouldDismount()) {
+      document.body.removeChild(this.element);
+      this.removed = true;
+    } else {
+      this.decay();
+      this.update();
+    }
   }
 }

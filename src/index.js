@@ -14,6 +14,8 @@ let cursorAngle = 0;
 const activityDiv = document.getElementById("activity-meter");
 const vectorDiv = document.getElementById("vector-indicator");
 
+const particles = [];
+
 document.addEventListener("mousemove", ({ clientX, clientY }) => {
   frameDistance += distance(prevCursorX, prevCursorY, clientX, clientY);
   const ang = angle(prevCursorX, prevCursorY, clientX, clientY);
@@ -33,5 +35,13 @@ window.setInterval(() => {
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
   frameDistance = 0;
 
-  new Particle(prevCursorX, prevCursorY);
+  particles.push(new Particle(prevCursorX, prevCursorY));
 }, CURSOR_INTERVAL);
+
+const stepParticles = () => {
+  console.log("DECAY");
+  particles.forEach(p => (p.removed ? null : p.step()));
+  window.requestAnimationFrame(stepParticles);
+};
+
+window.requestAnimationFrame(stepParticles);
