@@ -1,4 +1,5 @@
 import { distance, angle } from "./utils";
+import Particle from "./particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
@@ -31,3 +32,5 @@ window.setInterval(() => {
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
   frameDistance = 0;
 }, CURSOR_INTERVAL);
+
+new Particle();
