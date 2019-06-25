@@ -18,24 +18,24 @@
       color: #222;
       text-shadow: 0 0 20px #222, 0 0 10px #222, 0 10px 30px #222;
     }
-    #rate-meter-container {
+    #activity-meter {
+      height: 2;
+      background: fuchsia;
       position: fixed;
       left: 0;
-      top: 0;
-      right: 0;
+      bottom: 0;
+      transition: width 0.2s;
     }
-    #rate-meter {
-      height: 2;
-      background: #999;
-      transition: width 0.3s;
+    #direction-indicator {
+      height: 2px;
+      background: palegreen;
+      transition: transform 0.2s, width 0.2s;
     }
   </style>
   <title>sweatyboi</title>
   <body>
-    <div id="rate-meter-container">
-      <div id="rate-meter"></div>
-    </div>
-    <span id="vanity-plate">sweatyboi</span>
+    <div id="activity-meter"></div>
+    <div id="direction-indicator"></div>
     <script type="text/javascript" src="dist/main.js"></script>
   </body>
 </html>
