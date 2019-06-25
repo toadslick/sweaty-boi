@@ -4,38 +4,31 @@
     body {
       padding: 0;
       margin: 0;
-      background: #000;
+      background: white;
       display: flex;
       align-items: center;
       justify-content: center;
       user-select: none;
       -webkit-user-select: none;
     }
-    #vanity-plate {
-      font-family: system, sans-serif;
-      font-weight: 700;
-      font-size: 200px;
-      color: #222;
-      text-shadow: 0 0 20px #222, 0 0 10px #222, 0 10px 30px #222;
-    }
     #activity-meter {
-      height: 2;
-      background: fuchsia;
+      height: 2px;
+      background: black;
       position: fixed;
       left: 0;
       bottom: 0;
       transition: width 0.2s;
     }
-    #direction-indicator {
-      height: 2px;
-      background: palegreen;
-      transition: transform 0.2s, width 0.2s;
+    #vector-indicator {
+      width: 2px;
+      background: black;
+      transition: transform 0.2s, height 0.2s;
     }
   </style>
   <title>sweatyboi</title>
   <body>
     <div id="activity-meter"></div>
-    <div id="direction-indicator"></div>
+    <div id="vector-indicator"></div>
     <script type="text/javascript" src="dist/main.js"></script>
   </body>
 </html>

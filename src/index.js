@@ -11,7 +11,7 @@ let activityRate = 0;
 let frameAngles = [];
 
 const activityDiv = document.getElementById("activity-meter");
-const vectorDiv = document.getElementById("direction-indicator");
+const vectorDiv = document.getElementById("vector-indicator");
 
 document.addEventListener("mousemove", ({ screenX, screenY }) => {
   const ang = angle(prevCursorX, prevCursorY, screenX, screenY);
@@ -27,7 +27,7 @@ window.setInterval(() => {
     MAX_ACTIVITY_RATE
   );
   activityDiv.style.width = `${(activityRate / MAX_ACTIVITY_RATE) * 100}%`;
-  vectorDiv.style.width = `${frameDistance * 0.75}px`;
+  vectorDiv.style.height = `${frameDistance * 0.75}px`;
   vectorDiv.style.transform = `rotate(${average(frameAngles)}deg)`;
 
   frameDistance = 0;
