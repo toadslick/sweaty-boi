@@ -3,7 +3,7 @@ import { distance } from './utils';
 const CURSOR_INTERVAL = 300;
 const MIN_ACTIVITY_DECAY = 50;
 const MAX_ACTIVITY_RATE = 5000;
-const ACTIVITY_DIVISOR = 10;
+const ACTIVITY_DIVISOR = 15;
 
 let prevCursorX = 0;
 let prevCursorY = 0;
