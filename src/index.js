@@ -1,5 +1,5 @@
 import { distance, angle } from "./utils";
-import Particle from "./particle";
+import SweatParticle from "./sweat-particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
@@ -36,7 +36,7 @@ window.setInterval(() => {
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
 
   particles.push(
-    new Particle(
+    new SweatParticle(
       prevCursorX,
       prevCursorY,
       cursorAngle,
