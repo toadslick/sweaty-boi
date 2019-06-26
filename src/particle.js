@@ -1,6 +1,6 @@
-import { vector } from "./utils";
+import { angle, vector } from "./utils";
 
-const SIZE = 30;
+const SIZE = 20;
 const TAG_NAME = "div";
 
 const privateStyles = {
@@ -14,21 +14,29 @@ const privateStyles = {
 };
 
 export default class Particle {
-  styles = { background: "pink" };
+  config() {
+    this.styles = { background: "pink" };
+    this.originOffset = 0;
+    this.scaleDecay = 0;
+    this.velocityMultiplier = 0;
+    this.velocityScatter = 0;
+    this.velocityDecayX = 0;
+    this.velocityDecayY = 0;
+    this.gravityX = 0;
+    this.gravityXDecay = 0;
+    this.gravityXMax = 0;
+    this.gravityY = 0;
+    this.gravityYDecay = 0;
+    this.gravityYMax = 0;
+  }
 
-  scaleDecay = 0;
-  velocityMultiplier = 0;
-  velocityScatter = 0;
-  velocityDecayX = 0;
-  velocityDecayY = 0;
-  gravityX = 0;
-  gravityXDecay = 0;
-  gravityXMax = 0;
-  gravityY = 0;
-  gravityYDecay = 0;
-  gravityYMax = 0;
-
-  constructor(originX = 0, originY = 0, angle = 0, velocity = 0, scale = 1) {
+  constructor(
+    originX = 0,
+    originY = 0,
+    angleDegrees = 0,
+    velocity = 0,
+    scale = 1
+  ) {
     this.config();
 
     const {
@@ -38,12 +46,21 @@ export default class Particle {
       originOffsetDistance
     } = this;
 
-    const { x: vx, y: vy } = vector(angle, velocity * velocityMultiplier);
+    const { x: vx, y: vy } = vector(
+      angleDegrees,
+      velocity * velocityMultiplier
+    );
 
-    this.x = originX + SIZE / 2;
-    this.y = originY + SIZE / 2;
     this.velocityX = vx + (Math.random() - 0.5) * velocityScatter;
     this.velocityY = vy + (Math.random() - 0.5) * velocityScatter;
+
+    const { x: offsetX, y: offsetY } = vector(
+      angle(0, 0, this.velocityX, this.velocityY),
+      this.originOffset
+    );
+
+    this.x = originX + SIZE / 2 + offsetX;
+    this.y = originY + SIZE / 2 + offsetY;
     this.scale = scale;
     this.element = document.createElement(TAG_NAME);
     this.removed = false;
