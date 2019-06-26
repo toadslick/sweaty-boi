@@ -1,14 +1,21 @@
-const { abs, atan2, PI, sqrt } = Math;
+const { abs, atan2, PI, sqrt, sin, cos } = Math;
 
 const sq = x => x ** 2;
 
-const deg = rad => (180 / PI) * rad;
+const degrees = rad => (180 / PI) * rad;
+
+const radians = deg => (deg * PI) / 180;
 
 const distance = (x1, y1, x2, y2) => abs(sqrt(sq(x2 - x1) + sq(y2 - y1)));
 
-const angle = (x1, y1, x2, y2) => deg(atan2(y2 - y1, x2 - x1));
+const angle = (x1, y1, x2, y2) => degrees(atan2(y2 - y1, x2 - x1));
 
 const average = numbers =>
   numbers.length ? numbers.reduce((a, b) => a + b, 0) / numbers.length : 0;
 
-export { distance, angle, average };
+const vector = (deg, vel) => ({
+  x: vel * cos(radians(deg)),
+  y: vel * sin(radians(deg))
+});
+
+export { distance, angle, average, vector };

@@ -34,16 +34,17 @@ window.setInterval(() => {
   activityDiv.style.width = `${(activityRate / MAX_ACTIVITY_RATE) * 100}%`;
   vectorDiv.style.width = `${frameDistance}px`;
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
-  frameDistance = 0;
 
   particles.push(
     new Particle(
       prevCursorX,
       prevCursorY,
-      angle,
+      cursorAngle,
       frameDistance / CURSOR_INTERVAL
     )
   );
+
+  frameDistance = 0;
 }, CURSOR_INTERVAL);
 
 const stepParticles = () => {
