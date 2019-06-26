@@ -20,8 +20,8 @@ export default class Particle {
   scaleDecay = 0.98;
 
   constructor(originX = 0, originY = 0, angle = 0, velocity = 0, scale = 1) {
-    this.x = originX;
-    this.y = originY;
+    this.x = originX - SIZE / 2;
+    this.y = originY - SIZE / 2;
     this.angle = angle;
     this.velocity = velocity;
     this.scale = scale;
@@ -34,14 +34,19 @@ export default class Particle {
     }
 
     document.body.appendChild(this.element);
-
     this.update();
   }
 
   update() {
-    this.element.style.transform = `scale(${this.scale})`;
-    this.element.style.left = `${this.x - SIZE / 2}px`;
-    this.element.style.top = `${this.y - SIZE / 2}px`;
+    const {
+      x,
+      y,
+      scale,
+      element: { style }
+    } = this;
+    style.transform = `scale(${scale})`;
+    style.left = `${x}px`;
+    style.top = `${y}px`;
   }
 
   decay() {
