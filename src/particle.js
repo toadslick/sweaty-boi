@@ -1,6 +1,6 @@
 import { vector, angle } from "./utils";
 
-const SIZE = 50;
+const SIZE = 20;
 const TAG_NAME = "div";
 
 const privateStyles = {
@@ -15,12 +15,15 @@ const privateStyles = {
 
 export default class Particle {
   customStyles = {
-    backgroundColor: "pink",
-    backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><linearGradient id='gradient'><stop offset='10%' stop-color='%23F00'/><stop offset='90%' stop-color='%23fcc'/> </linearGradient><rect fill='url(%23gradient)' x='0' y='0' width='100%' height='100%'/></svg>"`,
-    borderRadius: `${SIZE / 2}px`
+    backgroundPosition: "center center",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
+    transformOrigin: "center bottom",
+    backgroundImage: `url("data:image/svg+xml;utf8,<svg width='51' height='99' xmlns='http://www.w3.org/2000/svg'><path id='svg_1' d='m26.52525,0c0,0 -26.52525,40.37214 -26.52525,73.02986c0,32.65772 50.5,35.74348 50.5,1.80003c0,-33.94345 -19.63889,-69.68695 -23.97475,-74.8299z' fill='#07b0ff'/></svg>"`
   };
 
   scaleDecay = 0.99;
+  scaleScatterMultiplier = 0.1;
   velocityMultiplier = 10;
   velocityScatter = 10;
   velocityDecayX = 0.96;
@@ -33,13 +36,18 @@ export default class Particle {
   gravityYMax = 10;
 
   constructor(originX = 0, originY = 0, angle = 0, velocity = 0, scale = 1) {
-    const { velocityMultiplier, velocityScatter, originOffsetDistance } = this;
+    const {
+      scaleScatterMultiplier,
+      velocityMultiplier,
+      velocityScatter,
+      originOffsetDistance
+    } = this;
     const { x: vx, y: vy } = vector(angle, velocity * velocityMultiplier);
     this.x = originX + SIZE / 2;
     this.y = originY + SIZE / 2;
     this.velocityX = vx + (Math.random() - 0.5) * velocityScatter;
     this.velocityY = vy + (Math.random() - 0.5) * velocityScatter;
-    this.scale = scale;
+    this.scale = scale + (Math.random() + 0.5) * scaleScatterMultiplier;
     this.element = document.createElement(TAG_NAME);
     this.removed = false;
 
@@ -94,11 +102,13 @@ export default class Particle {
   }
 
   rotation() {
-    return angle(
-      0,
-      0,
-      this.velocityX + this.gravityX,
-      this.velocityY + this.gravityY
+    return (
+      angle(
+        0,
+        0,
+        this.velocityX + this.gravityX,
+        this.velocityY + this.gravityY
+      ) - 90
     );
   }
 
