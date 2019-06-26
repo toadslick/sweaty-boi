@@ -1,7 +1,9 @@
 import { angle } from "./utils";
 import Particle from "./particle";
 
-export default class SweatParticle extends Particle {
+const FORMATION_UNIT = 1.5 / 10000;
+
+class SweatParticle extends Particle {
   config() {
     this.styles = {
       backgroundPosition: "center center",
@@ -40,3 +42,7 @@ export default class SweatParticle extends Particle {
     return this.scale < 0.1;
   }
 }
+
+SweatParticle.incrementFormation = rate => rate * FORMATION_UNIT;
+
+export default SweatParticle;

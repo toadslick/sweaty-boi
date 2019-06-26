@@ -1,15 +1,16 @@
 import { distance, angle } from "./utils";
-import SweatParticle from "./sweat-particle";
+import Particle from "./sweat-particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
-const ACTIVITY_DECAY = 0.98;
+const ACTIVITY_DECAY = 0.99;
 
 let prevCursorX = 0;
 let prevCursorY = 0;
 let frameDistance = 0;
 let activityRate = 0;
 let cursorAngle = 0;
+let formationUnits = 0;
 
 const activityDiv = document.getElementById("activity-meter");
 const vectorDiv = document.getElementById("vector-indicator");
@@ -35,14 +36,19 @@ window.setInterval(() => {
   vectorDiv.style.width = `${frameDistance}px`;
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
 
-  particles.push(
-    new SweatParticle(
-      prevCursorX,
-      prevCursorY,
-      cursorAngle,
-      frameDistance / CURSOR_INTERVAL
-    )
-  );
+  formationUnits += Particle.incrementFormation(activityRate);
+
+  if (formationUnits >= 1) {
+    formationUnits = 0;
+    particles.push(
+      new Particle(
+        prevCursorX,
+        prevCursorY,
+        cursorAngle,
+        frameDistance / CURSOR_INTERVAL
+      )
+    );
+  }
 
   frameDistance = 0;
 }, CURSOR_INTERVAL);

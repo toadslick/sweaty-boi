@@ -13,7 +13,7 @@ const privateStyles = {
   userSelect: "none"
 };
 
-export default class Particle {
+class Particle {
   config() {
     this.styles = { background: "pink" };
     this.originOffset = 0;
@@ -119,3 +119,7 @@ export default class Particle {
     return false;
   }
 }
+
+Particle.incrementFormation = () => 0;
+
+export default Particle;
