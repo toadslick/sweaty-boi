@@ -3,8 +3,8 @@ const TAG_NAME = "div";
 
 const privateStyles = {
   position: "fixed",
-  // left: `${-1 * SIZE}px`,
-  // top: `${-1 * SIZE}px`,
+  left: `${-1 * SIZE}px`,
+  top: `${-1 * SIZE}px`,
   height: `${SIZE}px`,
   width: `${SIZE}px`,
   zIndex: 9999,
@@ -20,8 +20,8 @@ export default class Particle {
   scaleDecay = 0.98;
 
   constructor(originX = 0, originY = 0, angle = 0, velocity = 0, scale = 1) {
-    this.x = originX - SIZE / 2;
-    this.y = originY - SIZE / 2;
+    this.x = originX + SIZE / 2;
+    this.y = originY + SIZE / 2;
     this.angle = angle;
     this.velocity = velocity;
     this.scale = scale;
@@ -44,9 +44,8 @@ export default class Particle {
       scale,
       element: { style }
     } = this;
-    style.transform = `scale(${scale})`;
-    style.left = `${x}px`;
-    style.top = `${y}px`;
+    style.transform = `scale(${scale}) translate(${x * (1 / scale)}px, ${y *
+      (1 / scale)}px)`;
   }
 
   decay() {
