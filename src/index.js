@@ -1,5 +1,5 @@
 import { distance, angle } from "./utils";
-import Particle from "./sweat-particle";
+import Particle from "./glisten-particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
@@ -38,8 +38,8 @@ window.setInterval(() => {
 
   formationUnits += Particle.incrementFormation(activityRate);
 
-  if (formationUnits >= 1) {
-    formationUnits = 0;
+  while (formationUnits >= 1) {
+    formationUnits -= 1;
     particles.push(
       new Particle(
         prevCursorX,
