@@ -1,49 +1,62 @@
 <html>
-  <style media="screen">
-    html,
-    body {
-      padding: 0;
-      margin: 0;
-      background: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-      -webkit-user-select: none;
-    }
-    #activity-meter {
-      height: 2px;
-      background: black;
-      position: fixed;
-      left: 0;
-      bottom: 10px;
-    }
-    #vector-indicator {
-      height: 2px;
-      background: black;
-    }
-    .meter {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      overflow: visible;
-      min-width: 2px;
-      transition: width 0.2s, transform 0.2s;
-    }
-    .meter::after {
-      content: "";
-      display: block;
-      height: 2px;
-      width: 2px;
-      border-radius: 1px;
-      transform: scale(4);
-      background-color: green;
-    }
-  </style>
-  <title>sweatyboi</title>
+  <head>
+    <meta charset="UTF-8" />
+    <style media="screen">
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+      #activity-meter {
+        height: 2px;
+        background: black;
+        position: fixed;
+        left: 0;
+        bottom: 10px;
+      }
+      #vector-indicator {
+        height: 2px;
+        background: black;
+      }
+      .meter {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: visible;
+        min-width: 2px;
+        transition: width 0.2s, transform 0.2s;
+      }
+      .meter::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 2px;
+        border-radius: 1px;
+        transform: scale(4);
+        background-color: green;
+      }
+      #particle-count {
+        font-family: sans-sans-serif;
+        font-size: 20;
+        color: green;
+        position: fixed;
+        right: 5px;
+        top: 5px;
+        text-align: right;
+      }
+    </style>
+    <title>sweatyboi</title>
+  </head>
   <body>
     <div id="activity-meter" class="meter"></div>
     <div id="vector-indicator" class="meter"></div>
+    <div id="particle-count"></div>
     <script type="text/javascript" src="dist/main.js"></script>
   </body>
 </html>
