@@ -1,5 +1,7 @@
 import { angle, vector } from "./utils";
 
+const { random, min } = Math;
+
 const SIZE = 20;
 const TAG_NAME = "div";
 
@@ -10,25 +12,28 @@ const privateStyles = {
   height: `${SIZE}px`,
   width: `${SIZE}px`,
   zIndex: 9999,
-  userSelect: "none"
+  userSelect: "none",
+};
+
+const defaultConfig = self => {
+  self.styles = {};
+  self.originOffset = 0;
+  self.scaleDecay = 0;
+  self.scaleScatter = 0;
+  self.velocityMultiplier = 0;
+  self.velocityScatter = 0;
+  self.velocityDecayX = 0;
+  self.velocityDecayY = 0;
+  self.gravityX = 0;
+  self.gravityXDecay = 0;
+  self.gravityXMax = 0;
+  self.gravityY = 0;
+  self.gravityYDecay = 0;
+  self.gravityYMax = 0;
 };
 
 class Particle {
-  config() {
-    this.styles = { background: "pink" };
-    this.originOffset = 0;
-    this.scaleDecay = 0;
-    this.velocityMultiplier = 0;
-    this.velocityScatter = 0;
-    this.velocityDecayX = 0;
-    this.velocityDecayY = 0;
-    this.gravityX = 0;
-    this.gravityXDecay = 0;
-    this.gravityXMax = 0;
-    this.gravityY = 0;
-    this.gravityYDecay = 0;
-    this.gravityYMax = 0;
-  }
+  config() {}
 
   constructor(
     originX = 0,
@@ -37,13 +42,15 @@ class Particle {
     velocity = 0,
     scale = 1
   ) {
+    defaultConfig(this);
+
     this.config();
 
     const {
-      scaleScatter,
       velocityMultiplier,
       velocityScatter,
-      originOffsetDistance
+      originOffset,
+      scaleScatter,
     } = this;
 
     const { x: vx, y: vy } = vector(
@@ -51,17 +58,17 @@ class Particle {
       velocity * velocityMultiplier
     );
 
-    this.velocityX = vx + (Math.random() - 0.5) * velocityScatter;
-    this.velocityY = vy + (Math.random() - 0.5) * velocityScatter;
+    this.velocityX = vx + (random() - 0.5) * velocityScatter;
+    this.velocityY = vy + (random() - 0.5) * velocityScatter;
 
     const { x: offsetX, y: offsetY } = vector(
       angle(0, 0, this.velocityX, this.velocityY),
-      this.originOffset
+      originOffset
     );
 
     this.x = originX + SIZE / 2 + offsetX;
     this.y = originY + SIZE / 2 + offsetY;
-    this.scale = scale;
+    this.scale = scale + (random() - 0.5) * scaleScatter;
     this.element = document.createElement(TAG_NAME);
     this.removed = false;
 
@@ -80,12 +87,12 @@ class Particle {
       y,
       scale,
       rotation,
-      element: { style }
+      element: { style },
     } = this;
     style.transform = [
       `scale(${scale})`,
       `translate(${x * (1 / scale)}px, ${y * (1 / scale)}px)`,
-      `rotate(${rotation.bind(this)()}deg)`
+      `rotate(${rotation.bind(this)()}deg)`,
     ].join(" ");
   }
 
@@ -94,19 +101,30 @@ class Particle {
       document.body.removeChild(this.element);
       this.removed = true;
     } else {
-      this.scale = this.scale * this.scaleDecay;
-      this.velocityX = this.velocityX * this.velocityDecayX;
-      this.velocityY = this.velocityY * this.velocityDecayY;
-      this.gravityX = Math.min(
-        this.gravityX * this.gravityXDecay,
-        this.gravityXMax
-      );
-      this.gravityY = Math.min(
-        this.gravityY * this.gravityYDecay,
-        this.gravityYMax
-      );
-      this.x = this.x + this.velocityX + this.gravityX;
-      this.y = this.y + this.velocityY + this.gravityY;
+      const {
+        scale,
+        scaleDecay,
+        velocityX,
+        velocityY,
+        velocityDecayX,
+        velocityDecayY,
+        gravityX,
+        gravityY,
+        gravityXDecay,
+        gravityYDecay,
+        gravityXMax,
+        gravityYMax,
+        x,
+        y,
+      } = this;
+
+      this.scale = scale * scaleDecay;
+      this.velocityX = velocityX * velocityDecayX;
+      this.velocityY = velocityY * velocityDecayY;
+      this.gravityX = min(gravityX * gravityXDecay, gravityXMax);
+      this.gravityY = min(gravityY * gravityYDecay, gravityYMax);
+      this.x = x + this.velocityX + this.gravityX;
+      this.y = y + this.velocityY + this.gravityY;
       this.update();
     }
   }
@@ -116,7 +134,7 @@ class Particle {
   }
 
   shouldRemove() {
-    return false;
+    return true;
   }
 }
 

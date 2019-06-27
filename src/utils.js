@@ -1,4 +1,4 @@
-const { abs, atan2, PI, sqrt, sin, cos } = Math;
+const { abs, atan2, PI, sqrt, sin, cos, floor, random } = Math;
 
 const sq = x => x ** 2;
 
@@ -15,7 +15,9 @@ const average = numbers =>
 
 const vector = (deg, vel) => ({
   x: vel * cos(radians(deg)),
-  y: vel * sin(radians(deg))
+  y: vel * sin(radians(deg)),
 });
 
-export { distance, angle, average, vector };
+const sample = array => array[floor(random() * array.length)];
+
+export { distance, angle, average, vector, sample };
