@@ -2,7 +2,6 @@ import { angle, sample } from "./utils";
 import Particle from "./particle";
 
 const FORMATION_UNIT = 1.5 / 10000;
-const MINIMUM_SCALE = 0.1;
 
 class SweatParticle extends Particle {
   config() {
@@ -12,7 +11,7 @@ class SweatParticle extends Particle {
       "darkturquoise",
       "paleturquoise",
       "deepskyblue",
-      "dodgerblue",
+      "dodgerblue"
     ];
 
     this.styles = {
@@ -22,7 +21,7 @@ class SweatParticle extends Particle {
       transformOrigin: "center bottom",
       backgroundImage: `url("data:image/svg+xml;utf8,<svg width='51' height='99' xmlns='http://www.w3.org/2000/svg'><path id='svg_1' d='m26.52525,0c0,0 -26.52525,40.37214 -26.52525,73.02986c0,32.65772 50.5,35.74348 50.5,1.80003c0,-33.94345 -19.63889,-69.68695 -23.97475,-74.8299z' fill='${sample(
         colors
-      )}'/></svg>"`,
+      )}'/></svg>"`
     };
 
     this.originOffset = 30;
@@ -46,12 +45,6 @@ class SweatParticle extends Particle {
         this.velocityY + this.gravityY
       ) - 90
     );
-  }
-
-  shouldRemove() {
-    const { innerHeight: h, innerWidth: w } = window;
-    const { x, y, scale } = this;
-    return x > w || x < 0 || y > h || scale < MINIMUM_SCALE;
   }
 }
 

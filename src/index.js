@@ -1,5 +1,5 @@
 import { distance, angle } from "./utils";
-import Particle from "./sweat-particle";
+import Particle from "./glisten-particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
@@ -27,6 +27,8 @@ document.addEventListener("mousemove", ({ clientX, clientY }) => {
 });
 
 window.setInterval(() => {
+  const velocity = frameDistance / CURSOR_INTERVAL;
+
   activityRate = Math.min(
     (activityRate + frameDistance) * ACTIVITY_DECAY,
     MAX_ACTIVITY_RATE
@@ -36,17 +38,12 @@ window.setInterval(() => {
   vectorDiv.style.width = `${frameDistance}px`;
   vectorDiv.style.transform = `rotate(${cursorAngle}deg)`;
 
-  formationUnits += Particle.incrementFormation(activityRate);
+  formationUnits += Particle.incrementFormation(activityRate, velocity);
 
   while (formationUnits >= 1) {
     formationUnits -= 1;
     particles.push(
-      new Particle(
-        prevCursorX,
-        prevCursorY,
-        cursorAngle,
-        frameDistance / CURSOR_INTERVAL
-      )
+      new Particle(prevCursorX, prevCursorY, cursorAngle, velocity)
     );
   }
 

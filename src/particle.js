@@ -2,6 +2,7 @@ import { angle, vector } from "./utils";
 
 const { random, min } = Math;
 
+const MINIMUM_SCALE = 0.2;
 const SIZE = 20;
 const TAG_NAME = "div";
 
@@ -12,7 +13,7 @@ const privateStyles = {
   height: `${SIZE}px`,
   width: `${SIZE}px`,
   zIndex: 9999,
-  userSelect: "none",
+  userSelect: "none"
 };
 
 const defaultConfig = self => {
@@ -50,7 +51,7 @@ class Particle {
       velocityMultiplier,
       velocityScatter,
       originOffset,
-      scaleScatter,
+      scaleScatter
     } = this;
 
     const { x: vx, y: vy } = vector(
@@ -87,12 +88,12 @@ class Particle {
       y,
       scale,
       rotation,
-      element: { style },
+      element: { style }
     } = this;
     style.transform = [
       `scale(${scale})`,
       `translate(${x * (1 / scale)}px, ${y * (1 / scale)}px)`,
-      `rotate(${rotation.bind(this)()}deg)`,
+      `rotate(${rotation.bind(this)()}deg)`
     ].join(" ");
   }
 
@@ -115,7 +116,7 @@ class Particle {
         gravityXMax,
         gravityYMax,
         x,
-        y,
+        y
       } = this;
 
       this.scale = scale * scaleDecay;
@@ -129,12 +130,14 @@ class Particle {
     }
   }
 
-  rotation() {
-    return 0;
+  shouldRemove() {
+    const { innerHeight: h, innerWidth: w } = window;
+    const { x, y, scale } = this;
+    return x > w || x < 0 || y > h || y < 0 || scale < MINIMUM_SCALE;
   }
 
-  shouldRemove() {
-    return true;
+  rotation() {
+    return 0;
   }
 }
 
