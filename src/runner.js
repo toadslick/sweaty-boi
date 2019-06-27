@@ -5,6 +5,7 @@ import BaseParticle from "./particles/base";
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
 const ACTIVITY_DECAY = 0.99;
+const MOUSE_EVENT = "mousemove";
 
 export default class Runner {
   constructor(Particle = BaseParticle, Monitor = NullMonitor) {
@@ -18,10 +19,24 @@ export default class Runner {
     this.Particle = Particle;
     this.monitor = new Monitor();
     this.particles = [];
+    this.running = false;
 
-    document.addEventListener("mousemove", this.onMouseMove.bind(this));
-    window.setInterval(this.onInterval.bind(this), CURSOR_INTERVAL);
-    window.requestAnimationFrame(this.onAnimationFrame.bind(this));
+    this.onMouseMove = this.onMouseMove.bind(this);
+    this.onAnimationFrame = this.onAnimationFrame.bind(this);
+    this.onInterval = this.onInterval.bind(this);
+  }
+
+  start() {
+    this.running = true;
+    this.interval = window.setInterval(this.onInterval, CURSOR_INTERVAL);
+    document.addEventListener(MOUSE_EVENT, this.onMouseMove);
+    window.requestAnimationFrame(this.onAnimationFrame);
+  }
+
+  stop() {
+    this.running = false;
+    window.clearInterval(this.interval);
+    document.removeEventListener(MOUSE_EVENT, this.onMouseMove);
   }
 
   onMouseMove({ clientX, clientY }) {

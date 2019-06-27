@@ -3,4 +3,6 @@ import DevelopmentMonitor from "./monitors/development";
 import GlistenParticle from "./particles/glisten";
 import SweatParticle from "./particles/sweat";
 
-new Runner(GlistenParticle, DevelopmentMonitor);
+const runner = new Runner(GlistenParticle, DevelopmentMonitor);
+
+runner.start();
