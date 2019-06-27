@@ -1,5 +1,5 @@
 import { distance, angle } from "./utils";
-import Particle from "./glisten-particle";
+import Particle from "./sweat-particle";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
