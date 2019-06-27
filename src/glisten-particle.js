@@ -7,12 +7,15 @@ const FORMATION_UNIT = 1 / 30000;
 class GlistenParticle extends Particle {
   config() {
     const colors = [
-      "skyblue",
-      "lightskyblue",
-      "darkturquoise",
-      "paleturquoise",
-      "deepskyblue",
-      "dodgerblue"
+      "orange",
+      "gold",
+      "yellow",
+      "lightsalmon",
+      "lightpink",
+      "hotpink",
+      "peachpuff",
+      "violet",
+      "plum"
     ];
 
     this.styles = {
