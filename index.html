@@ -6,23 +6,22 @@
       body {
         padding: 0;
         margin: 0;
-        background: white;
         display: flex;
         align-items: center;
         justify-content: center;
         user-select: none;
         -webkit-user-select: none;
       }
-      #activity-meter {
+      #sweatyboi-activity {
         height: 2px;
-        background: black;
+        background: #bbb;
         position: fixed;
         left: 0;
         bottom: 10px;
       }
-      #vector-indicator {
+      #sweatyboi-vector {
         height: 2px;
-        background: black;
+        background: #bbb;
       }
       .meter {
         display: flex;
@@ -39,12 +38,12 @@
         width: 2px;
         border-radius: 1px;
         transform: scale(4);
-        background-color: green;
+        background: #bbb;
       }
-      #particle-count {
+      #sweatyboi-count {
         font-family: sans-sans-serif;
         font-size: 20;
-        color: green;
+        color: #bbb;
         position: fixed;
         right: 5px;
         top: 5px;
@@ -54,9 +53,9 @@
     <title>sweatyboi</title>
   </head>
   <body>
-    <div id="activity-meter" class="meter"></div>
-    <div id="vector-indicator" class="meter"></div>
-    <div id="particle-count"></div>
+    <div id="sweatyboi-activity" class="meter"></div>
+    <div id="sweatyboi-vector" class="meter"></div>
+    <div id="sweatyboi-count"></div>
     <script type="text/javascript" src="dist/main.js"></script>
   </body>
 </html>

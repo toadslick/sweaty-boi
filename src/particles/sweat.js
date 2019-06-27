@@ -1,5 +1,5 @@
-import { angle, sample } from "./utils";
-import Particle from "./particle";
+import { angle, sample } from "../utils";
+import Particle from "./base";
 
 const FORMATION_UNIT = 1.5 / 10000;
 

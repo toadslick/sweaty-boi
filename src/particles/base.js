@@ -1,4 +1,4 @@
-import { angle, vector } from "./utils";
+import { angle, vector } from "../utils";
 
 const { random, min } = Math;
 

@@ -1,8 +1,8 @@
-import { sample } from "./utils";
-import Particle from "./particle";
+import { sample } from "../utils";
+import Particle from "./base";
 
 const ROTATION_SCATTER = 20;
-const FORMATION_UNIT = 1 / 30000;
+const PARTICLE_COUNT = 3;
 
 class GlistenParticle extends Particle {
   config() {
@@ -45,6 +45,6 @@ class GlistenParticle extends Particle {
 }
 
 GlistenParticle.incrementFormation = (rate, velocity) =>
-  (velocity ? 3 : 0) + rate * FORMATION_UNIT;
+  velocity ? PARTICLE_COUNT : 0;
 
 export default GlistenParticle;
