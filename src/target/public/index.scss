@@ -7,7 +7,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(0.25turn, lightcyan, lemonchiffon);
+  background: linear-gradient(0.25turn, #aee, #eea);
 }
 
 body {
@@ -22,6 +22,7 @@ body {
 
 h2 {
   font-weight: 400;
+  font-size: 30px;
 }
 #sweatyboi-mode-select {
   height: 100vh;
@@ -31,11 +32,8 @@ h2 {
   justify-content: center;
 
   div {
-    border: 2px solid #666;
-    overflow: hidden;
     display: flex;
     flex-direction: row;
-    border-radius: 40px;
   }
 
   input {
@@ -44,18 +42,26 @@ h2 {
 
   label {
     cursor: pointer;
-    font-size: 30px;
     user-select: none;
 
     & + label {
-      border-left: 2px solid #666;
+      margin-left: 20px;
     }
   }
 
   span {
+    font-size: 30px;
     display: block;
-    padding: 15px 40px;
-    color: #888;
+    border: 6px dotted #fff;
+    border-radius: 60px;
+    padding: 25px 50px;
+    color: #00000099;
+  }
+
+  input:focus + span,
+  input:hover + span {
+    color: #000;
+    background: #ffffff33;
   }
 
   input:checked + span {
