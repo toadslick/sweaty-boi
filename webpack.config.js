@@ -1,9 +1,16 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/target/development/index.js",
+  entry: {
+    development: "./src/target/development/index.js"
+  },
   output: {
-    filename: "main.js",
+    filename: data => {
+      switch (data.chunk.name) {
+        default:
+          return "[name]/index.js";
+      }
+    },
     path: path.resolve(__dirname, "dist")
   },
   devtool: "source-map",
