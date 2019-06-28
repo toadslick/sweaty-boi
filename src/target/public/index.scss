@@ -74,22 +74,24 @@ p {
     border-radius: 60px;
     padding: 25px 50px;
     color: #00000099;
+    background: linear-gradient(#ffffff99, #ffffff00, #ffffff00);
+    box-shadow: 0 5px 5px #00000011;
   }
 
   input:focus + span,
   input:hover + span {
     color: #000;
-    background: #ffffff33;
+    background: linear-gradient(#ffffffcc, #ffffff66, #ffffff66);
   }
 
   input:checked + span {
     color: #000;
-    background: #fff;
+    background: linear-gradient(#fff, #fff, #fff, #ffffff77);
   }
 }
 
 #sweatyboi-main {
-  padding: 0 60px;
+  padding: 0 80px;
   min-height: 100vh;
   background-color: #fff;
   display: flex;
