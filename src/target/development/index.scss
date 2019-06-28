@@ -1,3 +1,22 @@
+@mixin meter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: visible;
+  min-width: 2px;
+  transition: width 0.2s, transform 0.2s;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 2px;
+    border-radius: 1px;
+    transform: scale(4);
+    background: #bbb;
+  }
+}
+
 html,
 body {
   padding: 0;
@@ -7,9 +26,11 @@ body {
   justify-content: center;
   user-select: none;
   -webkit-user-select: none;
+  height: 100%;
 }
 
 #sweatyboi-activity {
+  @include meter;
   height: 2px;
   background: #bbb;
   position: fixed;
@@ -18,26 +39,8 @@ body {
 }
 
 #sweatyboi-vector {
+  @include meter;
   height: 2px;
-  background: #bbb;
-}
-
-.meter {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  overflow: visible;
-  min-width: 2px;
-  transition: width 0.2s, transform 0.2s;
-}
-
-.meter::after {
-  content: "";
-  display: block;
-  height: 2px;
-  width: 2px;
-  border-radius: 1px;
-  transform: scale(4);
   background: #bbb;
 }
 
