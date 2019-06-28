@@ -13,7 +13,8 @@ const privateStyles = {
   height: `${SIZE}px`,
   width: `${SIZE}px`,
   zIndex: 9999,
-  userSelect: "none"
+  userSelect: "none",
+  pointerEvents: "none"
 };
 
 const defaultConfig = self => {
