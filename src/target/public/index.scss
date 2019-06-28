@@ -7,7 +7,7 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(0.25turn, #aee, #eea);
+  background: linear-gradient(0.25turn, #9ee, #ee9);
 }
 
 body {
@@ -20,12 +20,28 @@ body {
   text-align: center;
 }
 
+h1 {
+  font-size: 100px;
+  font-weight: 600;
+  background: -webkit-linear-gradient(0, #6ee, #ee6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+}
+
 h2 {
   font-weight: 400;
   font-size: 30px;
+  margin: 0 0 2em;
 }
+
+p {
+  margin: 0 0 0.5em;
+  font-size: 20px;
+}
+
 #sweatyboi-mode-select {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -52,7 +68,7 @@ h2 {
   span {
     font-size: 30px;
     display: block;
-    border: 6px dotted #fff;
+    border: 6px solid #fff;
     border-radius: 60px;
     padding: 25px 50px;
     color: #00000099;
@@ -67,5 +83,24 @@ h2 {
   input:checked + span {
     color: #000;
     background: #fff;
+  }
+}
+
+#sweatyboi-main {
+  padding: 0 40px;
+  min-height: 100vh;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+#sweatyboi-footer {
+  padding: 16px;
+
+  p {
+    font-size: 14px;
+    margin: 0;
   }
 }
