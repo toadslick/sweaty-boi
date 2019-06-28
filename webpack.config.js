@@ -6,7 +6,8 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
-    development: "./src/target/development/index.js"
+    development: "./src/target/development/index.js",
+    public: "./src/target/public/index.js"
   },
   output: {
     filename: data => {
@@ -46,6 +47,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/target/development/index.html",
       filename: "development/index.html",
+      chunks: []
+    }),
+    new HtmlWebpackPlugin({
+      template: "src/target/public/index.html",
+      filename: "public/index.html",
       chunks: []
     }),
     new MiniCssExtractPlugin({
