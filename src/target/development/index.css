@@ -1,0 +1,58 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#sweatyboi-activity {
+  height: 2px;
+  background: #bbb;
+  position: fixed;
+  left: 0;
+  bottom: 10px;
+}
+
+#sweatyboi-vector {
+  height: 2px;
+  background: #bbb;
+}
+
+.meter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: visible;
+  min-width: 2px;
+  transition: width 0.2s, transform 0.2s;
+}
+
+.meter::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 2px;
+  border-radius: 1px;
+  transform: scale(4);
+  background: #bbb;
+}
+
+#sweatyboi-count {
+  font-family: sans-sans-serif;
+  font-size: 20;
+  color: #bbb;
+  position: fixed;
+  right: 5px;
+  top: 5px;
+  text-align: right;
+}
+
+#mode-select {
+  position: fixed;
+  left: 5px;
+  top: 5px;
+}
