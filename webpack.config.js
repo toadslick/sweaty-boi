@@ -1,7 +1,7 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/target/development/index.js",
   output: {
     filename: "main.js",
     path: path.resolve(__dirname, "dist")
@@ -17,7 +17,7 @@ module.exports = {
           loader: "babel-loader",
           options: {
             presets: ["@babel/preset-env"],
-            plugins: ["transform-class-properties"],
+            plugins: ["transform-class-properties"]
           }
         }
       }

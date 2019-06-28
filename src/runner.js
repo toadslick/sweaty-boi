@@ -1,6 +1,8 @@
 import { distance, angle } from "./utils";
-import NullMonitor from "./monitors/null";
+import NullMonitor from "./monitor";
 import BaseParticle from "./particles/base";
+import SweatParticle from "./particles/sweat";
+import GlistenParticle from "./particles/glisten";
 
 const CURSOR_INTERVAL = 100;
 const MAX_ACTIVITY_RATE = 10000;
@@ -8,7 +10,7 @@ const ACTIVITY_DECAY = 0.99;
 const MOUSE_EVENT = "mousemove";
 
 export default class Runner {
-  constructor(Particle = BaseParticle, Monitor = NullMonitor) {
+  constructor(Monitor = NullMonitor) {
     this.prevCursorX = 0;
     this.prevCursorY = 0;
     this.frameDistance = 0;
@@ -16,7 +18,7 @@ export default class Runner {
     this.cursorAngle = 0;
     this.formationUnits = 0;
 
-    this.Particle = Particle;
+    this.Particle = BaseParticle;
     this.monitor = new Monitor();
     this.particles = [];
     this.running = false;
@@ -27,16 +29,35 @@ export default class Runner {
   }
 
   start() {
-    this.running = true;
-    this.interval = window.setInterval(this.onInterval, CURSOR_INTERVAL);
-    document.addEventListener(MOUSE_EVENT, this.onMouseMove);
-    window.requestAnimationFrame(this.onAnimationFrame);
+    if (!this.running) {
+      this.running = true;
+      this.interval = window.setInterval(this.onInterval, CURSOR_INTERVAL);
+      document.addEventListener(MOUSE_EVENT, this.onMouseMove);
+      window.requestAnimationFrame(this.onAnimationFrame);
+    }
   }
 
   stop() {
-    this.running = false;
-    window.clearInterval(this.interval);
-    document.removeEventListener(MOUSE_EVENT, this.onMouseMove);
+    if (this.running) {
+      this.running = false;
+      window.clearInterval(this.interval);
+      document.removeEventListener(MOUSE_EVENT, this.onMouseMove);
+    }
+  }
+
+  mode(key) {
+    switch (key) {
+      case "sweat":
+        this.Particle = SweatParticle;
+        this.start();
+        break;
+      case "glisten":
+        this.Particle = GlistenParticle;
+        this.start();
+        break;
+      default:
+        this.stop();
+    }
   }
 
   onMouseMove({ clientX, clientY }) {
@@ -84,7 +105,6 @@ export default class Runner {
   }
 
   onAnimationFrame() {
-    this.monitor.count(this.particles.length);
     const remainingParticles = [];
     this.particles.forEach(p => {
       if (!p.removed) {
@@ -93,6 +113,9 @@ export default class Runner {
       }
     });
     this.particles = remainingParticles;
-    window.requestAnimationFrame(this.onAnimationFrame.bind(this));
+    this.monitor.count(this.particles.length);
+    if (this.running || this.particles.length) {
+      window.requestAnimationFrame(this.onAnimationFrame.bind(this));
+    }
   }
 }
