@@ -3,6 +3,7 @@ import Particle from "./base";
 
 const ROTATION_SCATTER = 20;
 const PARTICLE_COUNT = 3;
+const MINIMUM_VELOCITY = 0.1;
 
 class GlistenParticle extends Particle {
   config() {
@@ -45,6 +46,6 @@ class GlistenParticle extends Particle {
 }
 
 GlistenParticle.incrementFormation = (rate, velocity) =>
-  velocity ? PARTICLE_COUNT : 0;
+  velocity > MINIMUM_VELOCITY ? PARTICLE_COUNT : 0;
 
 export default GlistenParticle;

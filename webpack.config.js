@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -15,13 +17,14 @@ module.exports = {
     },
     path: path.resolve(__dirname, "dist")
   },
-  devtool: "source-map",
-  // watch: true,
+  optimization: {
+    minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin()]
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
           options: {
