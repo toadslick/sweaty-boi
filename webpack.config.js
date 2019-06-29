@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -22,6 +23,9 @@ module.exports = {
   },
   optimization: {
     minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin()]
+  },
+  node: {
+    global: false
   },
   module: {
     rules: [
@@ -60,6 +64,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new webpack.DefinePlugin({
+      global: "window" // Placeholder for global used in any node_modules
+    }),
     new HtmlWebpackPlugin({
       template: "src/target/development/index.html",
       filename: "development/index.html",

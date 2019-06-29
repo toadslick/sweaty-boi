@@ -6,7 +6,8 @@
   "extends": ["airbnb-base", "eslint:recommended"],
   "globals": {
     "Atomics": "readonly",
-    "SharedArrayBuffer": "readonly"
+    "SharedArrayBuffer": "readonly",
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": 2018

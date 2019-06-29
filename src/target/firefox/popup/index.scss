@@ -1,3 +1,5 @@
+$active-color: rgb(10, 132, 255);
+
 html,
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
@@ -8,7 +10,7 @@ body {
   align-items: stretch;
   justify-content: flex-start;
   margin: 0;
-  padding: 0;
+  padding: 4px 0;
 }
 
 input {
@@ -22,9 +24,9 @@ label {
   font-size: 14px;
   color: #777;
   cursor: pointer;
+  margin: 0;
 
   & + label {
-    border-top: 1px solid #ccc;
   }
 
   &:hover,
@@ -40,26 +42,37 @@ label {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: 10px 20px 10px 10px;
+    padding: 5px 16px 5px 12px;
     margin: 0;
+    position: relative;
   }
 
   span:before {
-    $size: 12px;
+    $size: 10px;
     content: "";
     height: $size;
     width: $size;
-    border-radius: $size / 2;
-    border: 1px solid #bbb;
+    border-radius: 7px;
+    border: 2px solid #bbb;
     margin-right: 10px;
   }
 
   input:checked + span {
-    color: #000;
+    color: $active-color;
 
     &:before {
-      border-color: #000;
-      background-color: #eee;
+      border-color: $active-color;
+    }
+
+    &:after {
+      $size: 6px;
+      content: "";
+      height: $size;
+      width: $size;
+      border-radius: $size / 2;
+      background: $active-color;
+      position: absolute;
+      left: 16px;
     }
   }
 }

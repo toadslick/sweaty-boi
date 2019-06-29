@@ -4,7 +4,7 @@
   "description": "'sweat' and 'glisten' particle effects for your mouse cursor",
   "private": true,
   "scripts": {
-    "start": "webpack --watch --mode development",
+    "start": "webpack --watch --mode production",
     "build": "webpack --mode production"
   },
   "keywords": [],
