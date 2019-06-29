@@ -7,7 +7,8 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   entry: {
     development: "./src/target/development/index.js",
-    public: "./src/target/public/index.js"
+    public: "./src/target/public/index.js",
+    firefox: "./src/target/firefox/index.js"
   },
   output: {
     filename: data => {
@@ -44,6 +45,16 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: "url-loader"
+      },
+      {
+        type: "javascript/auto",
+        test: /\.json/,
+        use: {
+          loader: "file-loader",
+          options: {
+            name: "[folder]/[name].[ext]"
+          }
+        }
       }
     ]
   },
