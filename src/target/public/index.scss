@@ -3,6 +3,18 @@
   left: -9999px;
 }
 
+@mixin medium {
+  @media screen and (min-width: 451px) and (max-width: 700px) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (max-width: 450px) {
+    @content;
+  }
+}
+
 html,
 body {
   margin: 0;
@@ -27,26 +39,26 @@ h1 {
   -webkit-text-fill-color: transparent;
   margin: 0 0 10px;
 
-  @media (max-width: 600px) {
+  @include medium {
     font-size: 80px;
   }
 
-  @media (max-width: 400px) {
-    font-size: 50px;
+  @include small {
+    font-size: 60px;
   }
 }
 
 h2 {
   font-weight: 300;
   font-size: 60px;
-  margin: 0 0 1em;
+  margin: 0 20px 1em;
 
-  @media (max-width: 600px) {
+  @include medium {
     font-size: 40px;
   }
 
-  @media (max-width: 400px) {
-    font-size: 20px;
+  @include small {
+    font-size: 36px;
   }
 }
 
@@ -109,7 +121,7 @@ p {
 }
 
 #sweatyboi-main {
-  padding: 0 80px;
+  padding: 0 90px 0 60px;
   min-height: 100vh;
   background-color: #fff;
   display: flex;
@@ -119,12 +131,41 @@ p {
   text-align: left;
   position: relative;
 
-  @media (max-width: 600px) {
-    padding: 0 30px;
+  @include medium {
+    padding: 0 25px;
   }
 
-  @media (max-width: 400px) {
-    font-size: 20px;
+  @include small {
+    padding: 0 15px;
+  }
+}
+
+#sweatyboi-activity-meter {
+  position: absolute;
+  right: 60px;
+  top: 60px;
+  bottom: 60px;
+  width: 20px;
+  border-radius: 6px;
+  background: linear-gradient(#ee9, #9ee);
+  background-attachment: fixed;
+  border: 2px solid transparent;
+  overflow: hidden;
+
+  @include medium {
+    display: none;
+  }
+
+  @include small {
+    display: none;
+  }
+
+  div {
+    background: linear-gradient(0.25turn, #fff, #ffffff99);
+    width: 100%;
+    height: 100%;
+    transition: height 0.2s;
+    border-radius: 4px;
   }
 }
 
@@ -137,18 +178,21 @@ p {
   list-style-type: none;
   font-weight: 500;
   font-size: 20px;
-  line-height: 1.3;
   flex-wrap: wrap;
 
   li {
-    margin: 20px 50px 0 0;
+    margin: 15px 50px 0 0;
     display: block;
+
+    @include small {
+      margin-right: 0;
+    }
   }
 
   a {
-    background-size: contain;
-    min-height: 100px;
-    padding-left: 110px;
+    background-size: 80px;
+    min-height: 90px;
+    padding-left: 93px;
     background-position: left center;
     background-repeat: no-repeat;
     display: flex;
@@ -158,6 +202,9 @@ p {
     text-decoration: none;
     white-space: nowrap;
     color: #666;
+    line-height: 1.3;
+    text-align: left;
+    cursor: pointer;
 
     &:hover,
     &:focus {
