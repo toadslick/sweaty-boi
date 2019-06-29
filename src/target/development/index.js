@@ -1,4 +1,4 @@
-import Runner from "../../runner";
+import Runner from "../../lib/runner";
 import Monitor from "./monitor";
 
 import "./index.scss";
