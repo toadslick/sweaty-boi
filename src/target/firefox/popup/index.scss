@@ -1,0 +1,29 @@
+html,
+body {
+  width: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+input {
+  position: absolute;
+  left: -9999px;
+}
+
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+
+  & + label {
+    border-top: 1px solid #000;
+  }
+
+  &:hover,
+  &:focus {
+    font-weight: bold;
+  }
+}

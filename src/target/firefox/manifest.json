@@ -4,16 +4,25 @@
   "version": "1.0",
 
   "description": "'Sweat' and 'Glisten' particle effects for your mouse cursor.",
+  "homepage_url": "https://github.com/toadslick/sweaty-boi",
 
   "icons": {
-    "48": "icons/icon-48.png",
-    "96": "icons/icon-96.png"
+    "48": "TODO.png",
+    "96": "TODO.png"
   },
 
   "content_scripts": [
     {
-      "matches": ["*"],
+      "matches": ["<all_urls>"],
       "js": ["index.js"]
     }
-  ]
+  ],
+
+  "permissions": ["activeTab"],
+
+  "browser_action": {
+    "default_icon": "TODO.png",
+    "default_title": "Sweatyboi",
+    "default_popup": "popup/index.html"
+  }
 }

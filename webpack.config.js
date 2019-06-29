@@ -8,7 +8,8 @@ module.exports = {
   entry: {
     development: "./src/target/development/index.js",
     public: "./src/target/public/index.js",
-    firefox: "./src/target/firefox/index.js"
+    firefox: "./src/target/firefox/index.js",
+    "firefox/popup": "./src/target/firefox/popup/index.js"
   },
   output: {
     filename: data => {
@@ -67,6 +68,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/target/public/index.html",
       filename: "public/index.html",
+      chunks: []
+    }),
+    new HtmlWebpackPlugin({
+      template: "src/target/firefox/popup/index.html",
+      filename: "firefox/popup/index.html",
       chunks: []
     }),
     new MiniCssExtractPlugin({
