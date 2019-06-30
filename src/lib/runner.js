@@ -26,6 +26,7 @@ export default class Runner {
     this.onMouseMove = this.onMouseMove.bind(this);
     this.onAnimationFrame = this.onAnimationFrame.bind(this);
     this.onInterval = this.onInterval.bind(this);
+    this.mode = this.mode.bind(this);
   }
 
   start() {

@@ -2,20 +2,25 @@ const STORAGE_KEY = "mode";
 
 const {
   storage: {
-    addEventListener,
+    onChanged: { addListener },
     local: { get, set }
   }
 } = browser;
 
-const setMode = value => set({ [STORAGE_KEY]: value });
-
 const getMode = (onSuccess, onError = () => {}) =>
   get(STORAGE_KEY).then(result => {
-    onSuccess(result[STORAGE_KEY]);
+    onSuccess(result[STORAGE_KEY] || "off");
   }, onError);
 
+const setMode = newValue =>
+  getMode(oldValue => {
+    if (newValue !== oldValue) {
+      set({ [STORAGE_KEY]: newValue });
+    }
+  });
+
 const onModeChanged = callback =>
-  addEventListener(changes => {
+  addListener(changes => {
     const change = changes[STORAGE_KEY];
     if (change) {
       callback(change.newValue);

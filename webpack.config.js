@@ -6,6 +6,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 
 module.exports = {
+  devtool: "inline-source-map",
   entry: {
     development: "./src/target/development/index.js",
     public: "./src/target/public/index.js",
