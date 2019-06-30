@@ -46,19 +46,21 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
-      },
-      {
-        test: /\.svg$/,
-        loader: "url-loader"
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { url: false } },
+          "sass-loader"
+        ]
       },
       {
         type: "javascript/auto",
-        test: /\.json/,
+        test: /(?!popup)\.(json|svg)/,
         use: {
           loader: "file-loader",
           options: {
-            name: "[folder]/[name].[ext]"
+            name(file) {
+              return file.replace(/^.+target\//, "");
+            }
           }
         }
       }

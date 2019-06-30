@@ -3,6 +3,8 @@ import Monitor from "./monitor";
 import onRadioSelected from "../../utils/on-radio-selected";
 
 import "./index.scss";
+import "./chrome-logo.svg";
+import "./firefox-logo.svg";
 
 const runner = new Runner(Monitor);
 

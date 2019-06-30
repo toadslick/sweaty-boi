@@ -1,4 +1,5 @@
 import "./manifest.json";
+import "./icon.svg";
 
 import Runner from "../../lib/runner";
 
