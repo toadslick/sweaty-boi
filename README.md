@@ -1,6 +1,6 @@
 Show the world that you're a sweatyboi with particle effects for your mouse cursor.
 
-### Repository Structure
+## Repository Structure
 
 | Project             | Source                   | Destination        |
 | ------------------- | ------------------------ | ------------------ |
@@ -8,12 +8,12 @@ Show the world that you're a sweatyboi with particle effects for your mouse curs
 | public web page     | `src/target/public`      | `dist/public`      |
 | Firefox extension   | `src/target/firefox`     | `dist/firefox`     |
 
-### Local Development
+## Local Development
 
     $ npm install
     $ npm start
 
-### Build Firefox Extension
+## Build Firefox Extension
 
     $ npm install
     $ npm run package:firefox
