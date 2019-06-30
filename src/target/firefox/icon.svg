@@ -1,0 +1,28 @@
+<svg width="87" height="87" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient y2="0.27344" x2="1" y1="0.55469" x1="0" id="svg_13">
+   <stop offset="0" stop-color="#ffffff00"/>
+   <stop offset="1" stop-color="#ffffff"/>
+  </linearGradient>
+  <linearGradient id="svg_5" x1="0" y1="0.97656" x2="1" y2="0">
+   <stop stop-color="#ffffff00" offset="0"/>
+   <stop stop-color="#ffffff" offset="1"/>
+  </linearGradient>
+  <linearGradient id="svg_6" x1="0.39453" y1="0.93359" x2="0.82813" y2="0">
+   <stop stop-color="#ffffff00" offset="0"/>
+   <stop stop-color="#ffffff" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <path id="svg_9" d="m78.08332,4.75001c0,-0.16668 -87.00001,-6.16655 -71.49998,26.49998c15.49997,32.66661 71.49998,-26.33333 71.49998,-26.49998z" stroke-width="1.5" fill="#007fff"/>
+  <path fill-opacity="0.51" id="svg_16" d="m72.7501,6.79084c0,-0.12752 -67.03441,-4.71784 -55.09149,20.27435c11.94289,24.99226 55.09149,-20.14685 55.09149,-20.27435z" stroke-width="1.5" fill="url(#svg_13)" stroke="null"/>
+  <path fill-opacity="0.51" id="svg_12" d="m72.7501,6.79084c0,-0.12752 -67.03441,-4.71784 -55.0915,20.27436c11.9429,24.9922 55.0915,-20.14686 55.0915,-20.27436z" stroke-width="1.5" fill="url(#svg_13)" stroke="null"/>
+  <path stroke="null" fill-opacity="0.51" id="svg_1" d="m71.41678,7.29299c0,-0.07631 -39.55675,-2.82336 -32.50928,12.13307c7.04745,14.95647 32.50928,-12.05676 32.50928,-12.13307z" stroke-width="1.5" fill="url(#svg_13)"/>
+  <path id="svg_11" d="m79.91666,17.9167c0,0 14.167,73.8332 -20.33329,63.3333c-34.5002,-10.5 20.33329,-63.3333 20.33329,-63.3333z" stroke-width="1.5" fill="#009dff"/>
+  <path fill-opacity="0.56" id="svg_15" d="m78.20761,23.41659c0,0 11.09709,57.00692 -15.92719,48.8999c-27.02421,-8.10709 15.92719,-48.8999 15.92719,-48.8999z" stroke-width="1.5" fill="url(#svg_6)"/>
+  <path stroke="null" fill-opacity="0.56" id="svg_7" d="m77.72088,24.91658c0,0 8.57292,43.04863 -12.30435,36.92663c-20.87722,-6.12205 12.30435,-36.92663 12.30435,-36.92663z" stroke-width="1.5" fill="url(#svg_6)"/>
+  <path id="svg_10" d="m49.91663,39.0834c0,0 -15.83306,60.83358 -36.83327,39.83345c-21.00021,-21.00016 36.83327,-39.83345 36.83327,-39.83345z" stroke-width="1.5" fill="#0090ff"/>
+  <path fill-opacity="0.56" id="svg_14" d="m45.9167,43.24999c0,0 -12.45699,48.45882 -28.97933,31.73054c-16.52235,-16.72831 28.97933,-31.73054 28.97933,-31.73054z" stroke-width="1.5" fill="url(#svg_5)"/>
+  <path stroke="null" fill-opacity="0.56" id="svg_2" d="m44.91671,44.41664c0,0 -8.25278,30.12568 -19.19887,19.72611c-10.94609,-10.39959 19.19887,-19.72611 19.19887,-19.72611z" stroke-width="1.5" fill="url(#svg_5)"/>
+ </g>
+</svg>

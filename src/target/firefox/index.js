@@ -16,7 +16,6 @@ if (!window.sweatyboiInitialized) {
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") {
       getMode(runner.mode);
-      runner.start();
     } else if (document.visibilityState === "hidden") {
       runner.clear();
       runner.stop();
