@@ -17,3 +17,10 @@ Show the world that you're a sweatyboi with particle effects for your mouse curs
 
     $ npm install
     $ npm run package:firefox
+
+## Build Environment Details
+
+- MacOS 10.14.4
+- Node 11.1.0
+- NPM 6.5.0
+- Git 2.17.1
