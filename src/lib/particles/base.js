@@ -98,10 +98,14 @@ class Particle {
     ].join(" ");
   }
 
+  remove() {
+    document.body.removeChild(this.element);
+    this.removed = true;
+  }
+
   step() {
     if (this.shouldRemove()) {
-      document.body.removeChild(this.element);
-      this.removed = true;
+      this.remove();
     } else {
       const {
         scale,

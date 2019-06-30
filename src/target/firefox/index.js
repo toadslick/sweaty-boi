@@ -4,10 +4,22 @@ import Runner from "../../lib/runner";
 
 import { getMode, onModeChanged } from "../../utils/browser-utils";
 
-const runner = new Runner();
+if (!window.sweatyboiInitialized) {
+  window.sweatyboiInitialized = true;
 
-getMode(runner.mode);
+  const runner = new Runner();
 
-onModeChanged(runner.mode);
+  getMode(runner.mode);
 
-window.onFocus = () => getMode(runner.mode);
+  onModeChanged(runner.mode);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      getMode(runner.mode);
+      runner.start();
+    } else if (document.visibilityState === "hidden") {
+      runner.clear();
+      runner.stop();
+    }
+  });
+}

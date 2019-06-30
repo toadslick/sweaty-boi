@@ -27,6 +27,9 @@ export default class Runner {
     this.onAnimationFrame = this.onAnimationFrame.bind(this);
     this.onInterval = this.onInterval.bind(this);
     this.mode = this.mode.bind(this);
+    this.clear = this.clear.bind(this);
+    this.start = this.start.bind(this);
+    this.stop = this.stop.bind(this);
   }
 
   start() {
@@ -44,6 +47,15 @@ export default class Runner {
       window.clearInterval(this.interval);
       document.removeEventListener(MOUSE_EVENT, this.onMouseMove);
     }
+  }
+
+  clear() {
+    this.particles.forEach(p => {
+      if (!p.removed) {
+        p.remove();
+      }
+    });
+    this.particles = [];
   }
 
   mode(key) {
