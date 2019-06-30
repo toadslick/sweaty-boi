@@ -1,9 +1,13 @@
+import "./manifest.json";
+
 import Runner from "../../lib/runner";
 
-import "./manifest.json";
+import { getMode, onModeChanged } from "../../utils/browser-utils";
 
 const runner = new Runner();
 
-browser.runtime.onMessage.addListener(({ command }) => {
-  runner.mode(command);
-});
+getMode(runner.mode);
+
+onModeChanged(runner.mode);
+
+window.onFocus = () => getMode(runner.mode);

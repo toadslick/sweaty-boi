@@ -1,13 +1,10 @@
 import "./index.scss";
 
-import { onRadioSelected } from "../../utils";
+import { setMode, getMode, onModeChanged } from "../../../utils/browser-utils";
+import onRadioSelected from "../../../utils/on-radio-selected";
 
-const {
-  tabs: { query, sendMessage }
-} = browser;
+const setSelectedRadio = onRadioSelected("body", setMode);
 
-onRadioSelected("body", value =>
-  query({ active: true, currentWindow: true }).then(tabs =>
-    sendMessage(tabs[0].id, { command: value })
-  )
-);
+getMode(setSelectedRadio);
+
+onModeChanged(setMode);

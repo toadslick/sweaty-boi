@@ -5,7 +5,6 @@ export default class PublicMonitor {
 
   activity(rate, max) {
     const height = 100 - (rate / max) * 100;
-    console.log(height);
     this.activityEl.style.height = `${height}%`;
   }
 

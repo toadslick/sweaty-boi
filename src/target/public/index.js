@@ -1,6 +1,6 @@
 import Runner from "../../lib/runner";
 import Monitor from "./monitor";
-import { onRadioSelected } from "../utils";
+import onRadioSelected from "../../utils/on-radio-selected";
 
 import "./index.scss";
 

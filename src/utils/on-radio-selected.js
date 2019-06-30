@@ -1,8 +1,6 @@
-const onRadioSelected = (containerSelector, callback) => {
+export default (containerSelector, callback) => {
   const allRadiosSelector = `${containerSelector} input`;
   const checkedRadioSelector = `${allRadiosSelector}:checked`;
-  console.log(allRadiosSelector);
-  console.log(checkedRadioSelector);
   const allRadios = document.querySelectorAll(allRadiosSelector);
 
   const selectedRadioChanged = () => {
@@ -13,6 +11,12 @@ const onRadioSelected = (containerSelector, callback) => {
   allRadios.forEach(radio =>
     radio.addEventListener("change", selectedRadioChanged)
   );
-};
 
-export { onRadioSelected };
+  const setSelectedRadio = value => {
+    allRadios.forEach(radio => {
+      radio.checked = radio.value === value;
+    });
+  };
+
+  return setSelectedRadio;
+};

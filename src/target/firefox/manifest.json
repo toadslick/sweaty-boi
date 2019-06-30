@@ -18,7 +18,7 @@
     }
   ],
 
-  "permissions": ["activeTab"],
+  "permissions": ["storage"],
 
   "browser_action": {
     "default_icon": "TODO.png",
