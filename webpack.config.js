@@ -8,19 +8,14 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 module.exports = {
   devtool: "inline-source-map",
   entry: {
-    development: "./src/target/development/index.js",
-    public: "./src/target/public/index.js",
-    firefox: "./src/target/firefox/index.js",
-    "firefox/popup": "./src/target/firefox/popup/index.js"
+    "dist/development": "./src/target/development/index.js",
+    docs: "./src/target/docs/index.js",
+    "dist/firefox": "./src/target/firefox/index.js",
+    "dist/firefox/popup": "./src/target/firefox/popup/index.js"
   },
   output: {
-    filename: data => {
-      switch (data.chunk.name) {
-        default:
-          return "[name]/index.js";
-      }
-    },
-    path: path.resolve(__dirname, "dist")
+    filename: "[name]/index.js",
+    path: path.resolve(__dirname)
   },
   optimization: {
     minimizer: [new TerserPlugin(), new OptimizeCssAssetsPlugin()]
@@ -59,7 +54,8 @@ module.exports = {
           loader: "file-loader",
           options: {
             name(file) {
-              return file.replace(/^.+target\//, "");
+              const dir = file.match(/\/docs\//) ? "" : "dist/";
+              return file.replace(/^.+target\//, dir);
             }
           }
         }
@@ -72,17 +68,17 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: "src/target/development/index.html",
-      filename: "development/index.html",
+      filename: "dist/development/index.html",
       chunks: []
     }),
     new HtmlWebpackPlugin({
-      template: "src/target/public/index.html",
-      filename: "public/index.html",
+      template: "src/target/docs/index.html",
+      filename: "docs/index.html",
       chunks: []
     }),
     new HtmlWebpackPlugin({
       template: "src/target/firefox/popup/index.html",
-      filename: "firefox/popup/index.html",
+      filename: "dist/firefox/popup/index.html",
       chunks: []
     }),
     new MiniCssExtractPlugin({

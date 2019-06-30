@@ -5,8 +5,9 @@ Show the world that you're a sweatyboi with particle effects for your mouse curs
 | Project             | Source                   | Destination        |
 | ------------------- | ------------------------ | ------------------ |
 | developer test page | `src/target/development` | `dist/development` |
-| public web page     | `src/target/public`      | `dist/public`      |
+| public web page     | `src/target/docs`        | `docs`             |
 | Firefox extension   | `src/target/firefox`     | `dist/firefox`     |
+| Chrome extension    | `src/target/chrome`      | `dist/chrome`      |
 
 ## Local Development
 
