@@ -14,8 +14,13 @@ const select = document.querySelector("#sweatyboi-mode-select");
 const meter = document.querySelector("#sweatyboi-activity-meter");
 
 const setSelectedRadio = onRadioSelected("#sweatyboi-mode-select", value => {
+  const className = "sweatyboi-visible";
+  if (value === "sweat") {
+    meter.classList.add(className);
+  } else {
+    meter.classList.remove(className);
+  }
   runner.mode(value);
-  meter.style.display = value === "sweat" ? "block" : "none";
   main.scrollIntoView({ behavior: "smooth" });
 });
 

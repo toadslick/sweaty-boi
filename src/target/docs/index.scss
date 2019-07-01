@@ -153,12 +153,16 @@ p {
   overflow: hidden;
   display: none;
 
-  @include medium {
-    display: none;
-  }
+  &.sweatyboi-visible {
+    display: block;
 
-  @include small {
-    display: none;
+    @include medium {
+      display: none;
+    }
+
+    @include small {
+      display: none;
+    }
   }
 
   div {
