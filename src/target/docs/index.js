@@ -5,6 +5,7 @@ import onRadioSelected from "../../utils/on-radio-selected";
 import "./index.scss";
 import "./chrome-logo.svg";
 import "./firefox-logo.svg";
+import "./site-image.png";
 
 const runner = new Runner(Monitor);
 

@@ -49,7 +49,7 @@ module.exports = {
       },
       {
         type: "javascript/auto",
-        test: /(?!popup)\.(json|svg)/,
+        test: /(?!popup)\.(json|svg|png)/,
         use: {
           loader: "file-loader",
           options: {
