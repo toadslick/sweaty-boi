@@ -11,7 +11,9 @@ module.exports = {
     "dist/development": "./src/target/development/index.js",
     docs: "./src/target/docs/index.js",
     "dist/firefox": "./src/target/firefox/index.js",
-    "dist/firefox/popup": "./src/target/firefox/popup/index.js"
+    "dist/firefox/popup": "./src/target/firefox/popup/index.js",
+    "dist/chrome": "./src/target/chrome/index.js",
+    "dist/chrome/popup": "./src/target/chrome/popup/index.js"
   },
   output: {
     filename: "[name]/index.js",
@@ -79,6 +81,11 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "src/target/firefox/popup/index.html",
       filename: "dist/firefox/popup/index.html",
+      chunks: []
+    }),
+    new HtmlWebpackPlugin({
+      template: "src/target/chrome/popup/index.html",
+      filename: "dist/chrome/popup/index.html",
       chunks: []
     }),
     new MiniCssExtractPlugin({
