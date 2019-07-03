@@ -12,7 +12,7 @@
     "128": "icon-128.png"
   },
 
-  "permissions": ["storage"],
+  "permissions": ["storage", "declarativeContent"],
 
   "background": {
     "scripts": ["index.js"],

@@ -6,7 +6,20 @@ import "./icon-128.png";
 
 const {
   runtime: { onInstalled },
-  storage: { local }
+  declarativeContent: { PageStateMatcher, ShowPageAction, onPageChanged }
 } = chrome;
 
-onInstalled.addListener(() => local.set({ mode: "off" }));
+onInstalled.addListener(() => {
+  onPageChanged.removeRules(undefined, () => {
+    onPageChanged.addRules([
+      {
+        conditions: [
+          new PageStateMatcher({
+            pageUrl: { hostEquals: "developer.chrome.com" }
+          })
+        ],
+        actions: [new ShowPageAction()]
+      }
+    ]);
+  });
+});

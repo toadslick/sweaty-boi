@@ -5,16 +5,15 @@ const {
     onChanged: { addListener },
     local: { get, set }
   }
-} = browser;
+} = chrome;
 
-const getMode = (onSuccess, onError = () => {}) =>
-  get(STORAGE_KEY).then(result => {
-    onSuccess(result[STORAGE_KEY] || "off");
-  }, onError);
+const getMode = onSuccess =>
+  get(STORAGE_KEY, result => onSuccess(result[STORAGE_KEY] || "off"));
 
 const setMode = newValue =>
   getMode(oldValue => {
     if (newValue !== oldValue) {
+      console.log("SET MODE", newValue);
       set({ [STORAGE_KEY]: newValue });
     }
   });
