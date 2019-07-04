@@ -1,25 +1,21 @@
 const STORAGE_KEY = "mode";
 
 const {
-  storage: {
-    onChanged: { addListener },
-    local: { get, set }
-  }
+  storage: { onChanged, local }
 } = chrome;
 
 const getMode = onSuccess =>
-  get(STORAGE_KEY, result => onSuccess(result[STORAGE_KEY] || "off"));
+  local.get(STORAGE_KEY, result => onSuccess(result[STORAGE_KEY] || "off"));
 
 const setMode = newValue =>
   getMode(oldValue => {
     if (newValue !== oldValue) {
-      console.log("SET MODE", newValue);
-      set({ [STORAGE_KEY]: newValue });
+      local.set({ [STORAGE_KEY]: newValue });
     }
   });
 
 const onModeChanged = callback =>
-  addListener(changes => {
+  onChanged.addListener(changes => {
     const change = changes[STORAGE_KEY];
     if (change) {
       callback(change.newValue);

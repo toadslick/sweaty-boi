@@ -4,22 +4,25 @@ import "./icon-32.png";
 import "./icon-48.png";
 import "./icon-128.png";
 
-const {
-  runtime: { onInstalled },
-  declarativeContent: { PageStateMatcher, ShowPageAction, onPageChanged }
-} = chrome;
+import Runner from "../../lib/runner";
 
-onInstalled.addListener(() => {
-  onPageChanged.removeRules(undefined, () => {
-    onPageChanged.addRules([
-      {
-        conditions: [
-          new PageStateMatcher({
-            pageUrl: { hostEquals: "developer.chrome.com" }
-          })
-        ],
-        actions: [new ShowPageAction()]
-      }
-    ]);
+import { getMode, onModeChanged } from "../../utils/browser-utils";
+
+if (!window.sweatyboiInitialized) {
+  window.sweatyboiInitialized = true;
+
+  const runner = new Runner();
+
+  getMode(runner.mode);
+
+  onModeChanged(runner.mode);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      getMode(runner.mode);
+    } else if (document.visibilityState === "hidden") {
+      runner.clear();
+      runner.stop();
+    }
   });
-});
+}
